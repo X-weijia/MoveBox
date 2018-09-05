@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    div{
+        width: 150px;
+        height: 150px;
+        border: 1px solid red;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+</body>
+
+<script>
+let box = document.querySelector("div");
+
+box.onmousedown = function(event){
+    event = event || window.event;
+    x1 = event.clientX;
+    y1 = event.clientY;
+    x2 = this.offsetLeft;
+    y2 = this.offsetTop;
+    console.log(x1,y1);
+    box.onmousemove = function(event1){
+        event = event1 || window.event;
+        x0 = event.clientX;
+        y0 = event.clientY;
+        x = x0 - x1 + x2;
+        y = y0 - y1 + y2;
+        box.style = `top:${y}px;left:${x}px;`
+    }
+    box.onmouseup = function(){
+        box.onmousemove = "";
+        box.onmouseup = "";
+    }
+}
+
+
+
+</script>
+</html>
